@@ -1,17 +1,31 @@
-input{
+
+.boton{
   border-width: 0;
   background: rgb(189, 189, 189);
   padding-top: 6px;
+  text-align: center;
 }
-input:focus {
+.boton:focus {
   outline: none; /* Quitar el borde por defecto */
   border: none; /* Quitar el borde definido */
 }
 
-li{
-  
+header{
+  display: flex;
+  flex-direction: column;
+  background-color: #7776B3;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
-body{
-  font-family: cursive;
+.botonEliminar{
+  border-width: 0px;
+  background: none;
+}
+
+li{
+  list-style-type: none;
 }

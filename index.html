@@ -5,28 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Arreglo en HTML</title>
     <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
 </head>
 <body>
-  <input type="text">
-
-  <ul id="myUl">
-  </ul>
+  <header>
+      <h1>To Do List</h1>
+  </header>
+  <div>
+    <form>
+      <input type="text" id="inputTxt" class="boton">
+      <button type="button" onclick="addElement()" class="boton">Hola</button>
+    </form>
+    
+    <ul id="myUl">
+    </ul>
+  </div>
 
     <script>
       let ul = document.getElementById("myUl"); 
       let lista = ["Tarea 1", "Tarea 2", "Tarea 3"];
+      let input = document.getElementById("inputTxt");
+      
+      function addElement(){
+        var inputValue = document.getElementById("inputTxt").value;
+        lista.push(inputValue);
+        input.value = "";
+        mostrarLista();
+      };
 
-      for(let i = 0; i<lista.length; i+=1){
-        ul.innerHTML = 
-        ul.innerHTML +
-        "<li id=\"li-"+ i +"\">" +
-        lista[i] +
-        "</li>"
+      function mostrarLista(){
+        ul.innerHTML = "";
+        for(let i = 0; i<lista.length; i+=1){
+          ul.innerHTML = 
+          ul.innerHTML +
+          "<li id=\"li-"+ i +"\" onclick=\"removeElement("+i+") \">" +
+          lista[i] +
+          "<button type=\"button\" onclick=\"removerElemento("+i+")\" class=\"botonEliminar\">🗷</button> </li>"
+        }
+      }
+
+      function removerElemento(id){
+        lista.splice(id, 1);
+        mostrarLista();
       }
       
-
-      //ul.remove();
-
+      mostrarLista();
     </script>
 </body>
 </html>
