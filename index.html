@@ -4,52 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Arreglo en HTML</title>
-    <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <style>
+      .ul-style{
+        align-content: center;
+      }
+    </style>
 </head>
 <body>
-  <header>
+
+  <header class="w3-container w3-teal">
       <h1>To Do List</h1>
   </header>
-  <div>
-    <form>
-      <input type="text" id="inputTxt" class="boton">
-      <button type="button" onclick="addElement()" class="boton">Hola</button>
+
+  <div class="w3-container w3-padding">
+    <form class="w3-container w3-padding w3-row">
+      <div class="w3-col s9">
+        <input type="text" id="inputTxt" class="w3-input w3-border" placeholder="Añadir tarea">
+      </div>
+      <div class="w3-col s3">
+        <button type="button" onclick="addElement()" class="w3-button w3-teal w3-margin-left">Add</button>
+      </div>
     </form>
-    
-    <ul id="myUl">
+    <ul id="myUl" class="w3-ul w3-card-4" style="background-color: #7776B3;"> 
     </ul>
   </div>
 
-    <script>
-      let ul = document.getElementById("myUl"); 
-      let lista = ["Tarea 1", "Tarea 2", "Tarea 3"];
-      let input = document.getElementById("inputTxt");
-      
-      function addElement(){
-        var inputValue = document.getElementById("inputTxt").value;
+  <script>
+    let ul = document.getElementById("myUl"); 
+    let lista = ["Tarea 1", "Tarea 2", "Tarea 3"];
+    let input = document.getElementById("inputTxt");
+    
+    function addElement(){
+      var inputValue = document.getElementById("inputTxt").value;
+      if (inputValue.trim() !== "") {
         lista.push(inputValue);
         input.value = "";
         mostrarLista();
-      };
-
-      function mostrarLista(){
-        ul.innerHTML = "";
-        for(let i = 0; i<lista.length; i+=1){
-          ul.innerHTML = 
-          ul.innerHTML +
-          "<li id=\"li-"+ i +"\" onclick=\"removeElement("+i+") \">" +
-          lista[i] +
-          "<button type=\"button\" onclick=\"removerElemento("+i+")\" class=\"botonEliminar\">🗷</button> </li>"
-        }
       }
+    }
 
-      function removerElemento(id){
-        lista.splice(id, 1);
-        mostrarLista();
+    function mostrarLista(){
+      ul.innerHTML = "";
+      for(let i = 0; i < lista.length; i += 1){
+        let color = i % 2 == 0 ? "w3-light-grey" : "w3-grey";
+        ul.innerHTML += 
+        `<li id="li-${i}" class="w3-padding-16 ${color} ul-style">
+          ${lista[i]}
+          <button type="button" onclick="removerElemento(${i})" class="w3-button w3-red w3-right">X</button>
+        </li>`;
       }
-      
+    }
+
+    function removerElemento(id){
+      lista.splice(id, 1);
       mostrarLista();
-    </script>
+    }
+    
+    mostrarLista();
+  </script>
+    
 </body>
 </html>
